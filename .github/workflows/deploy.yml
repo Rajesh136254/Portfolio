@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or master, check your branch name
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Inject EmailJS Secrets
+        run: |
+          # Replace placeholders with real secrets in all HTML files
+          sed -i "s/VITE_EMAILJS_PUBLIC_KEY/${{ secrets.EMAILJS_PUBLIC_KEY }}/g" *.html
+          sed -i "s/VITE_EMAILJS_SERVICE_ID/${{ secrets.EMAILJS_SERVICE_ID }}/g" *.html
+          sed -i "s/VITE_EMAILJS_TEMPLATE_ID/${{ secrets.EMAILJS_TEMPLATE_ID }}/g" *.html
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

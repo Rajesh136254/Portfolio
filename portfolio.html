@@ -1,0 +1,1253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajeswara Reddy | Full Stack Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+
+            50% {
+                transform: translateY(-10px) translateX(-10px);
+            }
+
+            75% {
+                transform: translateY(-30px) translateX(5px);
+            }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Premium Gradients */
+        .premium-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .premium-gradient-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .premium-gradient-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Hover Effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.6),
+                0 0 60px rgba(118, 75, 162, 0.4);
+        }
+
+        /* Skill Cards */
+        .skill-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+        }
+
+        /* Project Cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-image {
+            transition: transform 0.6s ease;
+        }
+
+        /* Typing Animation */
+        .typing {
+            border-right: 3px solid #667eea;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                border-color: #667eea;
+            }
+
+            51%,
+            100% {
+                border-color: transparent;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Smooth Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+        }
+
+        /* Floating Animation */
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        /* Button Styles */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-premium:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-premium span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Tech Stack Badge */
+        .tech-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #a8b2ff;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(102, 126, 234, 0.4);
+            transform: scale(1.1);
+            border-color: #667eea;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Rajeswara Reddy</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white transition relative group">
+                        Home
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white transition relative group">
+                        About
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#skills" class="nav-link text-gray-300 hover:text-white transition relative group">
+                        Skills
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#projects" class="nav-link text-gray-300 hover:text-white transition relative group">
+                        Projects
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white transition relative group">
+                        Contact
+                        <span
+                            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 w-full h-full glass-strong z-40 md:hidden" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="mobile-link text-2xl text-white hover:text-purple-400 transition">Home</a>
+            <a href="#about" class="mobile-link text-2xl text-white hover:text-purple-400 transition">About</a>
+            <a href="#skills" class="mobile-link text-2xl text-white hover:text-purple-400 transition">Skills</a>
+            <a href="#projects" class="mobile-link text-2xl text-white hover:text-purple-400 transition">Projects</a>
+            <a href="#contact" class="mobile-link text-2xl text-white hover:text-purple-400 transition">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 py-20 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 space-y-6 reveal">
+                    <div class="inline-block px-4 py-2 glass rounded-full mb-4">
+                        <span class="text-purple-400">👋 Welcome to my portfolio</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                        Hi, I'm <span class="gradient-text">Rajeswara Reddy</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-4xl text-gray-400">
+                        <span id="typing-text" class="typing"></span>
+                    </h2>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        A passionate Full Stack Developer with 2.5 years of experience crafting beautiful, functional,
+                        and user-centric digital experiences.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects"
+                            class="btn-premium px-8 py-4 premium-gradient text-white rounded-full font-semibold hover-glow">
+                            <span>View My Work</span>
+                        </a>
+                        <a href="#contact"
+                            class="px-8 py-4 glass text-white rounded-full font-semibold hover-lift border border-purple-500">
+                            Get In Touch
+                        </a>
+                    </div>
+                    <div class="flex gap-4 pt-4">
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift hover:bg-purple-600 transition">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sura-rajeswara-reddy-6770a523a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                            target="_blank"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift hover:bg-purple-600 transition">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift hover:bg-purple-600 transition">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center reveal">
+                    <div class="relative floating">
+                        <div class="w-80 h-80 premium-gradient rounded-full opacity-30 blur-3xl absolute"></div>
+                        <div
+                            class="w-80 h-80 glass rounded-full flex items-center justify-center relative border-4 border-purple-500">
+                            <i class="fas fa-code text-9xl gradient-text"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-purple-400 pulse"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 reveal">
+                About <span class="gradient-text">Me</span>
+            </h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 reveal">
+                    <div class="relative group">
+                        <div
+                            class="absolute -inset-1 premium-gradient rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000">
+                        </div>
+                        <img src="profile.jpg" alt="Rajeswara Reddy"
+                            class="rounded-full relative w-full border-4 border-purple-500">
+                    </div>
+                </div>
+                <div class="md:w-2/3 space-y-6 reveal">
+                    <h3 class="text-3xl font-bold">Full Stack Developer & Problem Solver</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        With over 2.5 years of professional experience, I specialize in building scalable web
+                        applications that combine cutting-edge technology with exceptional user experiences. My passion
+                        lies in transforming complex problems into elegant, efficient solutions.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        I'm proficient in modern frameworks and technologies including Angular, React, Node.js, and
+                        more. I love staying updated with the latest industry trends and continuously expanding my skill
+                        set to deliver innovative solutions.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-6">
+                        <div class="glass p-6 rounded-xl hover-lift">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 premium-gradient rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-calendar-alt text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">2.5+</p>
+                                    <p class="text-gray-400">Years Experience</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-xl hover-lift">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 premium-gradient-2 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-project-diagram text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">5+</p>
+                                    <p class="text-gray-400">Projects Completed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-xl hover-lift">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 premium-gradient-3 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-code text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">10+</p>
+                                    <p class="text-gray-400">Technologies</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass p-6 rounded-xl hover-lift">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 premium-gradient rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-robot text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">AI</p>
+                                    <p class="text-gray-400">Tools Expert</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 reveal">
+                My <span class="gradient-text">Skills</span>
+            </h2>
+
+            <div class="mb-16 reveal">
+                <h3 class="text-3xl font-semibold mb-8 text-center">Technical Stack</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-html5 text-6xl mb-4" style="color: #E34F26;"></i>
+                        <p class="font-semibold text-xl">HTML5</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-css3-alt text-6xl mb-4" style="color: #1572B6;"></i>
+                        <p class="font-semibold text-xl">CSS3</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-js text-6xl mb-4" style="color: #F7DF1E;"></i>
+                        <p class="font-semibold text-xl">JavaScript</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-angular text-6xl mb-4" style="color: #DD0031;"></i>
+                        <p class="font-semibold text-xl">Angular</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 88%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-react text-6xl mb-4" style="color: #61DAFB;"></i>
+                        <p class="font-semibold text-xl">React</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-node text-6xl mb-4" style="color: #339933;"></i>
+                        <p class="font-semibold text-xl">Node.js</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 87%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fas fa-database text-6xl mb-4" style="color: #4479A1;"></i>
+                        <p class="font-semibold text-xl">MySQL</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 83%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fab fa-python text-6xl mb-4" style="color: #3776AB;"></i>
+                        <p class="font-semibold text-xl">Python</p>
+                        <div class="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div class="h-full premium-gradient" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-3xl font-semibold mb-8 text-center">AI & Modern Tools</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fas fa-robot text-6xl mb-4 gradient-text"></i>
+                        <p class="font-semibold text-xl">Replit</p>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fas fa-bolt text-6xl mb-4 gradient-text"></i>
+                        <p class="font-semibold text-xl">Bolt.new</p>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fas fa-cube text-6xl mb-4 gradient-text"></i>
+                        <p class="font-semibold text-xl">V0.dev</p>
+                    </div>
+                    <div class="skill-card glass p-8 rounded-2xl text-center hover-lift">
+                        <i class="fas fa-brain text-6xl mb-4 gradient-text"></i>
+                        <p class="font-semibold text-xl">LLMs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 reveal">
+                Featured <span class="gradient-text">Projects</span>
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Project 1: RedSorm -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-lift reveal group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop"
+                            alt="RedSorm" class="project-image w-full h-full object-cover">
+                        <div class="project-overlay">
+                            <i class="fas fa-qrcode text-6xl mb-4"></i>
+                            <p class="text-xl font-semibold">QR Restaurant System</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">RedSorm</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            QR code based restaurant management system allowing customers to scan, order, and pay
+                            directly from their tables with real-time tracking.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2 text-sm">Key Features:</h4>
+                            <ul class="space-y-1 text-gray-400 text-sm">
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>QR code scanning
+                                        for menu access</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Real-time order
+                                        management</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Multiple payment
+                                        options</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Revenue
+                                        analytics dashboard</span></li>
+                            </ul>
+                        </div>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="tech-badge text-xs">React</span>
+                            <span class="tech-badge text-xs">Node.js</span>
+                            <span class="tech-badge text-xs">Express.js</span>
+                            <span class="tech-badge text-xs">MySQL</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="btn-premium flex-1 px-4 py-2 premium-gradient text-white rounded-full font-semibold text-sm hover-glow text-center">
+                                <span><i class="fas fa-external-link-alt mr-1"></i>Live Demo</span>
+                            </a>
+                            <a href="#"
+                                class="flex-1 px-4 py-2 glass text-white rounded-full font-semibold text-sm hover-lift border border-purple-500 text-center">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: TitanCRM -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-lift reveal group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+                            alt="TitanCRM" class="project-image w-full h-full object-cover">
+                        <div class="project-overlay">
+                            <i class="fas fa-users-cog text-6xl mb-4"></i>
+                            <p class="text-xl font-semibold">CRM & Ticketing</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">TitanCRM</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Simplified CRM and ticketing system combining essential features from enterprise platforms
+                            without unnecessary complexity.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2 text-sm">Key Features:</h4>
+                            <ul class="space-y-1 text-gray-400 text-sm">
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Unified customer
+                                        management</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Streamlined
+                                        ticketing system</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Simplified
+                                        workflow automation</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Essential
+                                        analytics and reporting</span></li>
+                            </ul>
+                        </div>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="tech-badge text-xs">React</span>
+                            <span class="tech-badge text-xs">Node.js</span>
+                            <span class="tech-badge text-xs">Express.js</span>
+                            <span class="tech-badge text-xs">MySQL</span>
+                            <span class="tech-badge text-xs">MongoDB</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="btn-premium flex-1 px-4 py-2 premium-gradient text-white rounded-full font-semibold text-sm hover-glow text-center">
+                                <span><i class="fas fa-external-link-alt mr-1"></i>Live Demo</span>
+                            </a>
+                            <a href="#"
+                                class="flex-1 px-4 py-2 glass text-white rounded-full font-semibold text-sm hover-lift border border-purple-500 text-center">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Guideaspire -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-lift reveal group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop"
+                            alt="Guideaspire" class="project-image w-full h-full object-cover">
+                        <div class="project-overlay">
+                            <i class="fas fa-graduation-cap text-6xl mb-4"></i>
+                            <p class="text-xl font-semibold">Educational Platform</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">Guideaspire</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Educational platform focused on career development, teaching practical job skills, business
+                            knowledge, and financial literacy from class 1.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2 text-sm">Key Features:</h4>
+                            <ul class="space-y-1 text-gray-400 text-sm">
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Age-appropriate
+                                        skill development</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Career guidance
+                                        and exploration</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Financial
+                                        literacy education</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Personal
+                                        development resources</span></li>
+                            </ul>
+                        </div>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="tech-badge text-xs">Angular</span>
+                            <span class="tech-badge text-xs">Node.js</span>
+                            <span class="tech-badge text-xs">Express.js</span>
+                            <span class="tech-badge text-xs">MySQL</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="btn-premium flex-1 px-4 py-2 premium-gradient text-white rounded-full font-semibold text-sm hover-glow text-center">
+                                <span><i class="fas fa-external-link-alt mr-1"></i>Live Demo</span>
+                            </a>
+                            <a href="#"
+                                class="flex-1 px-4 py-2 glass text-white rounded-full font-semibold text-sm hover-lift border border-purple-500 text-center">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Organization Dashboard -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-lift reveal group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
+                            alt="Dashboard" class="project-image w-full h-full object-cover">
+                        <div class="project-overlay">
+                            <i class="fas fa-chart-line text-6xl mb-4"></i>
+                            <p class="text-xl font-semibold">Analytics Dashboard</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">Organization Dashboard</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Custom-built data management and reporting dashboard with intuitive visualization and
+                            comprehensive reporting capabilities.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2 text-sm">Key Features:</h4>
+                            <ul class="space-y-1 text-gray-400 text-sm">
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Data maintenance
+                                        tools</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Interactive
+                                        reports and analytics</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Customizable
+                                        dashboard widgets</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Organization-specific
+                                        data views</span></li>
+                            </ul>
+                        </div>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="tech-badge text-xs">HTML</span>
+                            <span class="tech-badge text-xs">CSS</span>
+                            <span class="tech-badge text-xs">JavaScript</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="btn-premium flex-1 px-4 py-2 premium-gradient text-white rounded-full font-semibold text-sm hover-glow text-center">
+                                <span><i class="fas fa-external-link-alt mr-1"></i>Live Demo</span>
+                            </a>
+                            <a href="#"
+                                class="flex-1 px-4 py-2 glass text-white rounded-full font-semibold text-sm hover-lift border border-purple-500 text-center">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Automatic Reminder -->
+                <div class="project-card glass rounded-2xl overflow-hidden hover-lift reveal group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop"
+                            alt="Automatic Reminder" class="project-image w-full h-full object-cover">
+                        <div class="project-overlay">
+                            <i class="fas fa-bell text-6xl mb-4"></i>
+                            <p class="text-xl font-semibold">Desktop Application</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text">Automatic Reminder</h3>
+                        <p class="text-gray-400 mb-4 text-sm leading-relaxed">
+                            Desktop application designed to automate reminders for important tasks and events with a
+                            simplified interface.
+                        </p>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2 text-sm">Key Features:</h4>
+                            <ul class="space-y-1 text-gray-400 text-sm">
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Automated
+                                        reminder notifications</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Simple and
+                                        intuitive interface</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Customizable
+                                        reminder settings</span></li>
+                                <li class="flex items-start"><i
+                                        class="fas fa-check text-green-400 mr-2 mt-1 text-xs"></i><span>Desktop-native
+                                        experience</span></li>
+                            </ul>
+                        </div>
+                        <div class="mb-4 flex flex-wrap gap-2">
+                            <span class="tech-badge text-xs">Python</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="#"
+                                class="btn-premium flex-1 px-4 py-2 premium-gradient text-white rounded-full font-semibold text-sm hover-glow text-center">
+                                <span><i class="fas fa-external-link-alt mr-1"></i>Live Demo</span>
+                            </a>
+                            <a href="#"
+                                class="flex-1 px-4 py-2 glass text-white rounded-full font-semibold text-sm hover-lift border border-purple-500 text-center">
+                                <i class="fab fa-github mr-1"></i>Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 reveal">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-strong rounded-3xl p-8 md:p-12 reveal">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-3xl font-semibold mb-6">Let's Create Something Amazing</h3>
+                            <p class="text-gray-400 mb-8 leading-relaxed">
+                                I'm always interested in hearing about new projects and opportunities. Whether you have
+                                a question or just want to say hello, feel free to reach out!
+                            </p>
+
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4 glass p-4 rounded-xl hover-lift">
+                                    <div
+                                        class="w-12 h-12 premium-gradient rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Email</p>
+                                        <p class="font-semibold">rajeswarareddy254@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 glass p-4 rounded-xl hover-lift">
+                                    <div
+                                        class="w-12 h-12 premium-gradient-2 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-phone text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Phone</p>
+                                        <p class="font-semibold">+91 7780321490</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 glass p-4 rounded-xl hover-lift">
+                                    <div
+                                        class="w-12 h-12 premium-gradient-3 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-400">Location</p>
+                                        <p class="font-semibold">India</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8">
+                                <p class="text-sm text-gray-400 mb-4">Follow me on social media</p>
+                                <div class="flex gap-4">
+                                    <a href="#"
+                                        class="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift hover:bg-purple-600 transition">
+                                        <i class="fab fa-github text-xl"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/sura-rajeswara-reddy-6770a523a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                        target="_blank"
+                                        class="w-12 h-12 glass rounded-full flex items-center justify-center hover-lift hover:bg-purple-600 transition">
+                                        <i class="fab fa-linkedin text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2">Your Name</label>
+                                    <input type="text" id="name" name="name" required
+                                        class="w-full px-4 py-3 glass rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-transparent text-white">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2">Your Email</label>
+                                    <input type="email" id="email" name="email" required
+                                        class="w-full px-4 py-3 glass rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-transparent text-white">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium mb-2">Your Message</label>
+                                    <textarea id="message" name="message" rows="5" required
+                                        class="w-full px-4 py-3 glass rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition bg-transparent text-white resize-none"></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="btn-premium w-full px-8 py-4 premium-gradient text-white rounded-full font-semibold hover-glow">
+                                    <span><i class="fas fa-paper-plane mr-2"></i>Send Message</span>
+                                </button>
+                            </form>
+                            <div id="form-message" class="mt-4 text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 glass-strong">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">&copy; 2024 Rajeswara Reddy. All rights reserved.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#home" class="text-gray-400 hover:text-purple-400 transition">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-purple-400 transition">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-purple-400 transition">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-purple-400 transition">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-purple-400 transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particles Background
+        const particlesContainer = document.getElementById('particles');
+        const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe'];
+
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 5 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`;
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Typing Effect
+        const typingTexts = ['Full Stack Developer', 'Problem Solver', 'Tech Enthusiast', 'AI Tools Expert'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeText() {
+            const currentText = typingTexts[textIndex];
+            const typingElement = document.getElementById('typing-text');
+
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, 2000);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % typingTexts.length;
+                }
+            }
+
+            setTimeout(typeText, isDeleting ? 50 : 100);
+        }
+
+        typeText();
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                navbar.style.backdropFilter = 'blur(20px)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Reveal on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        reveals.forEach(reveal => {
+            revealObserver.observe(reveal);
+        });
+
+        // EmailJS Configuration - Replace these with your actual IDs from https://dashboard.emailjs.com/admin
+        const EMAILJS_PUBLIC_KEY = "VITE_EMAILJS_PUBLIC_KEY";
+        const EMAILJS_SERVICE_ID = "VITE_EMAILJS_SERVICE_ID";
+        const EMAILJS_TEMPLATE_ID = "VITE_EMAILJS_TEMPLATE_ID";
+
+        // Initialize EmailJS
+        (function () {
+            if (EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes('REPLACE_WITH')) {
+                emailjs.init({
+                    publicKey: EMAILJS_PUBLIC_KEY,
+                });
+            } else {
+                console.warn('EmailJS public key not set. Please visit https://dashboard.emailjs.com/admin/account to get your Public Key.');
+            }
+        })();
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const submitBtnOriginalText = submitBtn.innerHTML;
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(contactForm);
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                message: formData.get('message'),
+                to_email: 'rajeswarareddy254@gmail.com'
+            };
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin mr-2"></i>Sending...</span>';
+            formMessage.classList.add('hidden');
+
+            // Security check: ensure keys are replaced
+            if (EMAILJS_PUBLIC_KEY.includes('REPLACE_WITH') || EMAILJS_SERVICE_ID.includes('REPLACE_WITH')) {
+                console.error('EmailJS is not configured. Please replace the placeholders with your actual keys.');
+                formMessage.textContent = '❌ Email service is not set up correctly. Please contact me directly at rajeswarareddy254@gmail.com';
+                formMessage.classList.remove('hidden', 'text-green-400');
+                formMessage.classList.add('text-red-400', 'font-semibold');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = submitBtnOriginalText;
+                return;
+            }
+
+            // Send email using EmailJS
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+                .then((response) => {
+                    console.log('SUCCESS!', response.status, response.text);
+
+                    // Show success message
+                    formMessage.textContent = '✅ Message sent successfully! I\'ll get back to you soon.';
+                    formMessage.classList.remove('hidden', 'text-red-400');
+                    formMessage.classList.add('text-green-400', 'font-semibold');
+
+                    // Reset form
+                    contactForm.reset();
+
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = submitBtnOriginalText;
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                }, (error) => {
+                    console.log('FAILED...', error);
+
+                    // Show error message
+                    formMessage.textContent = '❌ Failed to send message. Please try again or email me directly.';
+                    formMessage.classList.remove('hidden', 'text-green-400');
+                    formMessage.classList.add('text-red-400', 'font-semibold');
+
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = submitBtnOriginalText;
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                });
+        });
+
+        // Active Navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-purple-400');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('text-purple-400');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
