@@ -1136,13 +1136,13 @@
         });
 
         // EmailJS Configuration - Replace these with your actual IDs from https://dashboard.emailjs.com/admin
-        const EMAILJS_PUBLIC_KEY = "VITE_EMAILJS_PUBLIC_KEY";
-        const EMAILJS_SERVICE_ID = "VITE_EMAILJS_SERVICE_ID";
-        const EMAILJS_TEMPLATE_ID = "VITE_EMAILJS_TEMPLATE_ID";
+        const EMAILJS_PUBLIC_KEY = "O16A2gAUG5L7bNcJx";
+        const EMAILJS_SERVICE_ID = "service_7cqqzq7";
+        const EMAILJS_TEMPLATE_ID = "template_vigr0uk";
 
         // Initialize EmailJS
         (function () {
-            if (EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+            if (EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes("VITE_")) {
                 emailjs.init({
                     publicKey: EMAILJS_PUBLIC_KEY,
                 });
@@ -1173,9 +1173,9 @@
             formMessage.classList.add('hidden');
 
             // Security check: ensure keys are replaced
-            if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY" || EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID") {
-                console.error('EmailJS is not configured. Please replace the placeholders with your actual keys.');
-                formMessage.textContent = '❌ Email service is not set up correctly. Please contact me directly at rajeswarareddy254@gmail.com';
+            if (EMAILJS_PUBLIC_KEY.includes("VITE_") || EMAILJS_SERVICE_ID.includes("VITE_")) {
+                console.error('EmailJS is not configured with real keys.');
+                formMessage.textContent = '❌ Email service is in "Protected Mode". Please deploy to GitHub to test or replace VITE_ placeholders with real keys.';
                 formMessage.classList.remove('hidden', 'text-green-400');
                 formMessage.classList.add('text-red-400', 'font-semibold');
                 submitBtn.disabled = false;
