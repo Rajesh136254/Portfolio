@@ -1187,6 +1187,13 @@
                 return;
             }
 
+            // Debug log to help you verify IDs in the browser console
+            console.log('Attempting to send email...', {
+                service: EMAILJS_SERVICE_ID,
+                template: EMAILJS_TEMPLATE_ID,
+                publicKey: EMAILJS_PUBLIC_KEY
+            });
+
             // Send email using EmailJS
             emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
                 .then((response) => {
