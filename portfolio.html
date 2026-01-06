@@ -1138,9 +1138,10 @@
         });
 
         // EmailJS Configuration - Replace these with your actual IDs from https://dashboard.emailjs.com/admin
-        const EMAILJS_PUBLIC_KEY = "O16A2gAUG5L7bNcJx";
-        const EMAILJS_SERVICE_ID = "service_7cqqzq7";
-        const EMAILJS_TEMPLATE_ID = "template_vigr0uk";
+        // We trim() these to prevent accidental hidden spaces from copy-pasting
+        const EMAILJS_PUBLIC_KEY = "O16A2gAUG5L7bNcJx".trim();
+        const EMAILJS_SERVICE_ID = "service_7cqqzq7".trim();
+        const EMAILJS_TEMPLATE_ID = "template_vigr0uk".trim();
 
         // Initialize EmailJS
         (function () {
@@ -1194,8 +1195,10 @@
                 publicKey: EMAILJS_PUBLIC_KEY
             });
 
-            // Send email using EmailJS
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+            // Send email using EmailJS v4 standard approach
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, {
+                publicKey: EMAILJS_PUBLIC_KEY,
+            })
                 .then((response) => {
                     console.log('SUCCESS!', response.status, response.text);
 
